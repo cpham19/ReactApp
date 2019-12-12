@@ -24,6 +24,8 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <title>React App</title>
   </head>
   <body>
@@ -54,5 +56,32 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var sidebarState = window.localStorage.getItem("sidebarState");
+        // If the sidebar and content are expanded, they should stay expanded after reloading the page or changing page
+        if (sidebarState) {
+          $("#sidebar, #content").addClass("active");
+        } else {
+          $("#sidebar, #content").removeClass("active");
+        }
+        $("#sidebarCollapse").on("click", function() {
+          // If sidebar is expanded, collapse the sidebar
+          if ($("#sidebar, #content").hasClass("active")) {
+            $("#sidebar, #content").removeClass("active");
+            window.localStorage.removeItem("sidebarState");
+          }
+          // If sidebar and content are collapsed, expand them
+          else {
+            $("#sidebar, #content").addClass("active");
+            window.localStorage.setItem("sidebarState", "active");
+          }
+        });
+
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
+      });
+    </script>
   </body>
 </html>

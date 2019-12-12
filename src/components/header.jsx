@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Dropdown, NavDropdown } from "react-bootstrap";
-// Stateless Functional Component
+// Component
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +19,6 @@ class Header extends Component {
     });
   }
 
-  handleSelect(evtKey, event) {
-    // Push route
-    console.log(evtKey);
-  }
-
   render() {
     const collapsed = this.state.collapsed;
     const classOne = collapsed
@@ -36,9 +30,16 @@ class Header extends Component {
 
     return (
       <header>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-          <div className="container">
-            <span className="navbar-brand">React App</span>
+        <nav className="navbar navbar-expand-lg fixed-top">
+          <div className="container-fluid">
+            <button
+              type="button"
+              id="sidebarCollapse"
+              className="btn btn-primary"
+            >
+              <FontAwesomeIcon icon="bars" id="sidebarCollapse" />
+            </button>
+            <div className="navbar-brand">React App</div>
             <button
               onClick={this.toggleNavbar}
               className={`${classTwo}`}
@@ -52,12 +53,15 @@ class Header extends Component {
               <span className="navbar-toggler-icon" />
             </button>
             <div className={`${classOne}`} id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
+              <ul
+                className="navbar-nav ml-auto"
+                style={{ paddingRight: "100xpx" }}
+              >
                 <li className="nav-item">
                   <NavLink
                     exact={true}
                     className="nav-link"
-                    activeClassName="active"
+                    activeClassName="active-link"
                     to="/"
                   >
                     Home
@@ -67,7 +71,7 @@ class Header extends Component {
                   <NavLink
                     exact={true}
                     className="nav-link"
-                    activeClassName="active"
+                    activeClassName="active-link"
                     to="/test"
                   >
                     Test
@@ -84,7 +88,7 @@ class Header extends Component {
                   >
                     <FontAwesomeIcon icon="bars" />
                   </a>
-                  <div class="dropdown-menu">
+                  <div className="dropdown-menu dropdown-menu-right">
                     <NavLink className="dropdown-item" exact={true} to="/">
                       Home
                     </NavLink>

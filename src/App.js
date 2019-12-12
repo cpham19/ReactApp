@@ -3,18 +3,18 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
+import Content from "./components/content";
 import Footer from "./components/footer";
-import Home from "./components/home";
-import Test from "./components/test";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   faCheckSquare,
   faCoffee,
-  faBars
+  faBars,
+  faHome
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faCheckSquare, faCoffee, faBars);
+library.add(fab, faCheckSquare, faCoffee, faBars, faHome);
 
 class App extends Component {
   state = {};
@@ -38,12 +38,9 @@ class App extends Component {
       <React.Fragment>
         <Header />
         <main className="container-fluid">
-          <Sidebar />
-          <div className="content">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/test" component={Test} />
-            </Switch>
+          <div className="wrapper">
+            <Sidebar />
+            <Content />
           </div>
         </main>
         <Footer />
